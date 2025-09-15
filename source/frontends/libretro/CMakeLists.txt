@@ -42,8 +42,11 @@ add_library(applewin_libretro SHARED
   ${HEADER_FILES}
   )
 
+find_package(Boost REQUIRED)
+
 target_include_directories(applewin_libretro PRIVATE
   libretro-common/include
+  ${Boost_INCLUDE_DIRS}
   )
 
 target_link_libraries(applewin_libretro PRIVATE
