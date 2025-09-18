@@ -2,7 +2,7 @@ include(FindPkgConfig)
 
 pkg_search_module(ZLIB REQUIRED zlib)
 
-if (NOT WIN32)
+if (NOT WIN32 AND NOT IOS)
   pkg_search_module(SLIRP slirp)
 
   # if slirp is not found, we will try pcap
@@ -32,7 +32,9 @@ if (NOT WIN32)
   endif()
 endif()
 
-find_package(Boost REQUIRED)
+if (NOT BUILD_LIBRETRO OR NOT APPLE)
+  find_package(Boost REQUIRED)
+endif()
 
 set(SOURCE_FILES
   Tfe/tfesupp.cpp
